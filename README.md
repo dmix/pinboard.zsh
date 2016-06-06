@@ -7,19 +7,21 @@ With support for functioning as a [Qutebrowser](https://qutebrowser.org) userscr
 
 ### Installation
 
-a) Copy script to a local bin directory, for ex:
+a) Install `zsh` and `curl` if not yet installed
+
+b) Copy `pinboard` script to a local bin directory or run the installer
+
 
     $ git clone https://github.com/t1mxg0d/pinboard.zsh
-    $ cp pinboard.zsh/pinboard ~/.bin/pinboard
-    $ chmod +x ~/.bin/pinboard
+    $ cd pinboard.zsh
+    $ chmod +x install
+    $ ./install
 
-b) Install `curl` if not yet installed
-
-c) Export these two variables to your enviornment:
-
-Visit https://pinboard.in/settings/password and copy/paste your API token as an enviornment variable:
+c) Export your API token to your shell enviornment:
 
     export PINBOARD_API_TOKEN="<username:apitoken>"
+
+Visit https://pinboard.in/settings/password to find your API token.
 
 ### Usage
 
@@ -33,14 +35,11 @@ For example:
     > Pinboard - Saving: https://github.com/t1mxg0d/pinboard.z....
     > Pinboard - Article saved! {bookmark_id: 732753757}
 
-    Bookmark is now accessible at: https://www.pinboard.com/read/732753757
-
 ### Qutebrowser userscript
 
-Copy or symlink `pinboard` to `~/.local/share/qutebrowser/userscripts/` and make executable:
+Symlink `pinboard` bin installed above to `~/.local/share/qutebrowser/userscripts/` and make executable:
 
-    $ cp pinboard ~/.local/share/qutebrowser/userscripts/
-    $ chmod +x ~/.local/share/qutebrowser/userscripts/pinboard
+    $ ln -sf ~/.bin/pinboard ~/.local/share/qutebrowser/userscripts/pinboard
 
 Test it out by running:
 
