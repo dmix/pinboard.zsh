@@ -1,0 +1,82 @@
+#!/usr/bin/env zsh
+
+# -----------------------------------------------------------------------
+# Pinboard.zsh installer
+# -----------------------------------------------------------------------
+
+print "pinboard> Installing bin..."
+
+## Install to local bin directory ---------------------------------------
+
+SRC=$(pwd)/pinboard
+BIN_DIR=(
+    $HOME/.bin
+    $HOME/.local/bin
+    /usr/local/bin
+)
+for d in $BIN_DIR; do
+    # Select the first dir that is r/w
+    [[ -z "$DEST" ]] && test -w $d && DEST="$d/pinboard"
+done
+
+chmod +x $SRC
+
+[[ -e $DEST ]] && rm $DEST
+cp $SRC $DEST
+
+[[ ! -x $DEST ]] && \
+    echo "pinboard> ERROR: failed to install bin to $DEST" && exit
+echo "pinboard> Done. Copied to:
+
+    $DEST
+"
+
+
+## Install as Qutebrowser userscript -----------------------------------
+
+print "pinboard> Installing as Qutebrowser userscript..."
+
+QUTE_DEST="$HOME/.local/share/qutebrowser/userscripts/pinboard"
+
+[[ -e $QUTE_DEST ]] && rm $QUTE_DEST
+ln -sf $DEST $QUTE_DEST
+
+echo "pinboard> Done. Linked bin from $DEST to:
+
+    $QUTE_DEST
+"
+
+## Prompt user for API token -------------------------------------------
+
+BROWSERS=(
+    $BROWSER
+    qutebrowser
+    chromium
+    google-chrome-unstable
+    google-chrome-canary
+    google-chrome-dev
+    google-chrome
+    firefox
+)
+for b in $BROWSERS; do
+    # Select the first browser found
+    [[ -z "$BROWSER" ]] && test -x $b && BROWSER=$b
+done
+
+API_TOKEN_URL="https://pinboard.in/settings/password"
+
+print "pinboard> Note: you must export your Pinboard API token in your shell:
+
+        export PINBOARD_API_TOKEN=<api_token>
+
+The API token can be found in your Pinboard settings at
+
+        $API_TOKEN_URL
+"
+vared -p "What would you like to open this URL in $BROWSER? [y/N] " -c openBrowser
+
+[[ $openBrowser =~ "(y|yes|Y|YES)" ]] && \
+    print "pinboard> Opening $API_TOKEN_URL in $BROWSER...." && \
+    $BROWSER $API_TOKEN_URL
+
+print "pinboard> Installation complete. Exiting..."
