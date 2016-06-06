@@ -52,7 +52,7 @@ Add a keyboard shortcut by opening `~/.config/qutebrowser/keys.conf`
 and copying this into the [normal] section (line 47-437).
 
     spawn -u pinboard qute-add
-        sI
+        sP
 
 Now open Qutebrowser and test out the keyboard shortcut. You can change `sI` so whatever keyboard shortcut you like.
 
