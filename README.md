@@ -5,6 +5,8 @@ A simple ZSH script for adding URLs to Pinboard via CLI.
 
 With support for functioning as a [Qutebrowser](https://qutebrowser.org) userscript, create a keyboard short to save the current page to [Pinboard](https://pinboard.in).
 
+See also: [instapaper.zsh](https://github.com/t1mxg0d/instapaper.zsh) for a similar script for adding articles to Instapaper via ZSH and Qutebrowser.
+
 ### Installation
 
 a) Install `zsh` and `curl` if not yet installed
