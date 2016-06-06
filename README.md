@@ -58,7 +58,12 @@ and copying this into the [normal] section (line 47-437).
 
 Now open Qutebrowser and test out the keyboard shortcut. You can change `sI` so whatever keyboard shortcut you like.
 
-- Enjoy!
+# TODO
+
+- Add support for tagging articles from Qutebrowser
+- Test on OSX/Windows
+
+Enjoy!,
 t1mxg0d
 
 Licence: GPL v3
